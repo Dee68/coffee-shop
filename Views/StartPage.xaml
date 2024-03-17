@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Coffee_Shop.Views.StartPage"
+             Title=""
+             BackgroundColor="DarkGoldenrod">
+    <VerticalStackLayout>
+        <Grid RowDefinitions="Auto,*,Auto" Padding="15,25">
+            <Label Grid.Row="0"
+        Text="Coffee shop"
+               TextColor="Black"
+        FontSize="40"
+        FontAttributes="Bold"
+        HorizontalTextAlignment="Center"/>
+            <Image Grid.Row="1"
+               Source="food_coffee.png"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               HeightRequest="300"
+                   WidthRequest="300"/>
+            <VerticalStackLayout Grid.Row="2" Spacing="15">
+                <Label
+                  Text="Quick delivery for all customers"
+                        TextColor="Black"
+                  FontSize="30"
+                  FontAttributes="Bold"
+                  HorizontalTextAlignment="Center"
+                  />
+                <Label
+                  Text="Feel the fine aroma of coffee and  nice fast food"
+                        TextColor="Black"
+                  HorizontalOptions="Center"
+                  FontSize="18"
+                  />
+                <Border StrokeThickness="0" 
+                  StrokeShape="RoundRectangle 15" 
+                  BackgroundColor="Goldenrod"
+                  HeightRequest="60"
+                  WidthRequest="200"
+                  VerticalOptions="End"
+                  HorizontalOptions="Center"
+                 Padding="30, 10">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Border.GestureRecognizers>
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label
+                          Text="Check in"
+                          TextColor="Black"
+                          FontSize="18"
+                          FontAttributes="Bold"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Center"
+                          />
+                        <Image
+                          Source="right_arrow.png"
+                          HeightRequest="30"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Center"
+                          />
+                    </HorizontalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

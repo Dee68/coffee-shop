@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
+             xmlns:models="clr-namespace:Coffee_Shop.Models"
+             x:Class="Coffee_Shop.Views.DailyOrder"
+             x:DataType="vm:DailyOrderViewModel"
+             Title=""
+             Padding="15"
+             BackgroundColor="PaleGoldenrod">
+    <ScrollView>
+       
+        <VerticalStackLayout>
+            <Label Text="LIST OF ORDERS FOR TODAY"
+                TextColor="Black"
+                TextDecorations="Underline"
+                FontSize="30"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="10"/>
+            <Border StrokeShape="RoundRectangle 10"
+                      StrokeThickness="0"
+                      VerticalOptions="Center"
+                      Margin="5"
+                      Padding="5"
+                      BackgroundColor="Transparent"> 
+                <Grid ColumnDefinitions="*,*,*,*,*" 
+                       HorizontalOptions="Center"
+                      VerticalOptions="Center"
+                      Padding="15" Margin="10" ColumnSpacing="20">
+            <!--Titles-->
+            <Label  Grid.Column="0"
+                    Text="OrderNumber"
+                    TextColor="Black"
+                    TextDecorations="Underline"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+            <Label  Grid.Column="1"
+                    Text="Customer"
+                    TextColor="Black"
+                    TextDecorations="Underline"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+            <Label  Grid.Column="2"
+                    Text="TelePhone"
+                    TextColor="Black"
+                    TextDecorations="Underline"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+            <Label Grid.Column="3"
+                    Text="Date"
+                    TextColor="Black"
+                    TextDecorations="Underline"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+                    <Label Grid.Column="4"
+                   Text="TotalAmount"
+                   TextColor="Black"
+                   TextDecorations="Underline"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+                </Grid>
+            </Border>
+            <CollectionView ItemsSource="{Binding Orders}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Order">
+                    <Border StrokeShape="RoundRectangle 10"
+                      StrokeThickness="0"
+                      VerticalOptions="Center"
+                      Margin="5"
+                      Padding="5"
+                      BackgroundColor="White">
+                            <Grid ColumnDefinitions="*,*,*,*,*" 
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center" 
+                                Padding="15" Margin="10" ColumnSpacing="20">
+
+                                <!--order details-->
+                            <Label Grid.Column="0"
+                                 Text="{Binding OrderNumber}"
+                                 TextColor="Black"
+                                 FontSize="18"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 /> 
+                            <Label Grid.Column="1"
+                                 Text="{Binding CustomerName}"
+                                 TextColor="Black"
+                                 FontSize="18"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 /> 
+                            <Label Grid.Column="2"
+                                 Text="{Binding CustomerPhone}"
+                                 TextColor="Black"
+                                 FontSize="18"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 />
+
+
+                            <Label Grid.Column="3" 
+                                 Text="{Binding OrderDate}"
+                                 TextColor="Black"
+                                 FontSize="18"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 />
+                                <Label Grid.Column="4"
+                                   Text="{Binding TotalAmount,StringFormat='${0:N2}'}"
+                                   TextColor="Black"
+                                   FontSize="18"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+
+                            </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!--<Label 
+            Text="{Binding Orders.Count}"
+            TextColor="White"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />-->
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

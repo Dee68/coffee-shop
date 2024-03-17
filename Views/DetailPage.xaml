@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
+             xmlns:models="clr-namespace:Coffee_Shop.Models"
+             x:Class="Coffee_Shop.Views.DetailPage"
+             x:DataType="vm:DetailViewModel"
+             Title=""
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="White" StatusBarStyle="DarkContent" />
+    </ContentPage.Behaviors>
+    <Grid>
+        <ScrollView Padding="20">
+            <VerticalStackLayout Spacing="15">
+                <Image
+                    Source="{Binding Product.Image}"
+                    HeightRequest="200"
+                    WidthRequest="200"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Label
+                    Text="{Binding Product.Name}"
+                    TextColor="Black"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"/>
+                <Grid ColumnDefinitions="*,*" Padding="20, 5">
+                    <Label Grid.Column="0"
+                     Text="{Binding Product.Price,StringFormat='${0:N2}'}"
+                     TextColor="Black"
+                     Padding="20,0,0,0"
+                     />
+                    <HorizontalStackLayout Grid.Column="1" HorizontalOptions="End" Spacing="2" Padding="0,0,20,0">
+                        <Label Text="4" TextColor="Black"/>
+                        <Image
+                        Source="star.png"
+                        HeightRequest="15"
+                        WidthRequest="15"
+                        >
+                            <Image.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="DarkGoldenrod" />
+                            </Image.Behaviors>
+                        </Image>
+                    </HorizontalStackLayout>
+                </Grid>
+                <Label Text="Description"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="0,10"/>
+                
+                <Label Text="{Binding Product.Description}"
+                       TextColor="Black"
+                       FontSize="14" 
+                       />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Border StrokeThickness="0"
+                StrokeShape="RoundRectangle 10"
+                x:Name="bottomBox"
+                BackgroundColor="DarkGoldenrod"
+                Margin="20,0"
+                VerticalOptions="End"
+                HeightRequest="150"
+                Padding="15">
+            <Border.Shadow>
+                <Shadow  Brush="Gold"
+                         Radius="100"/>
+            </Border.Shadow>
+            <Grid RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="*,*" Padding="20" ColumnSpacing="5">
+                <Label Grid.Row="0" Grid.Column="0"
+                    Text="{Binding Product.Amount,
+                    StringFormat='${0:N2}'}"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <Grid Grid.Row="0" Grid.Column="1"
+                      ColumnDefinitions="60,50,50"
+                      HorizontalOptions="End"
+                      VerticalOptions="Center">
+                    <ImageButton Grid.Row="0" Grid.Column="0"
+                           Source="minus.png"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           Command="{Binding RemoveFromCartCommand}">
+                        <ImageButton.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="Gold" />
+                        </ImageButton.Behaviors>
+                        
+                    </ImageButton>
+                    <Label Grid.Column="1" Grid.Row="0"
+                           Text="{Binding Product.CartQuantity}"
+                           TextColor="Black"
+                           FontSize="20"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           />
+                    <ImageButton Grid.Column="2" Grid.Row="0"
+                       Source="add.png"
+                       HeightRequest="30"
+                       WidthRequest="30"
+                       VerticalOptions="Center"
+                       HorizontalOptions="End"
+                       Command="{Binding AddToCartCommand}">
+                        <ImageButton.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="Gold"/>
+                        </ImageButton.Behaviors>
+                        
+                    </ImageButton>
+
+                </Grid>
+                <Button 
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Text="View Cart"
+                    TextColor="Black"
+                    FontSize="18"
+                    BackgroundColor="Goldenrod"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Padding="50,10"
+                    Margin="0,10"
+                    Command="{Binding ViewCartCommand}"/>
+            </Grid>
+        </Border>
+        <ImageButton
+            Source="back"
+            HeightRequest="30"
+            WidthRequest="30"
+            VerticalOptions="Start"
+            HorizontalOptions="Start"
+            Margin="15"
+            Clicked="ImageButton_Clicked"
+            >
+            <ImageButton.Behaviors>
+                <toolkit:IconTintColorBehavior TintColor="DarkGoldenrod" />
+            </ImageButton.Behaviors>
+        </ImageButton>
+
+    </Grid>
+</ContentPage>

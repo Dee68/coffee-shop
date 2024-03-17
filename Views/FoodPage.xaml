@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
+             xmlns:models="clr-namespace:Coffee_Shop.Models"
+             x:Class="Coffee_Shop.Views.FoodPage"
+             x:DataType="vm:FoodViewModel"
+             Title=""
+             BackgroundColor="DarkGoldenrod"
+             Padding="15">
+    <Grid RowDefinitions="Auto,*" RowSpacing="10">
+        <Label Grid.Row="0"
+            Text="Food category"
+            TextColor="Black"
+            FontSize="18"
+            FontAttributes="Bold"
+            />
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout>
+                <CollectionView ItemsSource="{Binding Products}"  >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Product"
+                                      >
+                            <Border StrokeShape="RoundRectangle 10"
+                                StrokeThickness="0"
+                                BackgroundColor="PaleGoldenrod"
+                                Padding="10"
+                                Margin="5">
+                                <Grid ColumnDefinitions="120, *">
+                                    <Image Grid.Column="0"
+                                       Source="{Binding Image}"
+                                       HeightRequest="120"
+                                       WidthRequest="120"
+                                       />
+                                    <VerticalStackLayout Grid.Column="1" Spacing="5">
+
+                                        <Label 
+                                                Text="{Binding Name}"
+                                                TextColor="Black"
+                                                FontSize="20"
+                                                FontAttributes="Bold"/>
+
+                                        <Grid ColumnDefinitions="*,*" Padding="20, 5">
+                                            <Label Grid.Column="0"
+                                                   Text="{Binding Price, StringFormat='${0:N2}'}"
+                                                   TextColor="Black"/>
+                                            <HorizontalStackLayout Grid.Column="1" HorizontalOptions="End" Spacing="2">
+                                                <Label Text="4" TextColor="Black"/>
+                                                <Image
+                                                     Source="star.png"
+                                                     HeightRequest="15"
+                                                     WidthRequest="15"
+                                                     >
+                                                    <Image.Behaviors>
+                                                        <toolkit:IconTintColorBehavior TintColor="DarkGoldenrod" />
+                                                    </Image.Behaviors>
+                                                </Image>
+                                            </HorizontalStackLayout>
+                                        </Grid>
+                                        <Border StrokeShape="RoundRectangle 10"
+                                            StrokeThickness="0"
+                                            BackgroundColor="DarkGoldenrod"
+                                            HeightRequest="45"
+                                            HorizontalOptions="Center"
+                                            Padding="30, 5">
+                                            <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                                                <Label
+                                                 Text="View more"
+                                                 TextColor="Black"
+                                                 FontSize="18"
+                                                 VerticalOptions="Center"
+                                                 HorizontalOptions="Center"/>
+                                                <Image
+                                                Source="right_arrow"
+                                                HeightRequest="30"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                                />
+                                            </HorizontalStackLayout>
+                                            <Border.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:FoodViewModel}},Path=GoToDetailPageCommand}"
+                                                    CommandParameter="{Binding .}" />
+                                            </Border.GestureRecognizers>
+                                        </Border>
+                                    </VerticalStackLayout>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+   
+</ContentPage>
